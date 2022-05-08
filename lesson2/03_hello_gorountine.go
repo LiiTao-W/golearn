@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"sync"
 )
 
 func hello(i int) {
@@ -10,10 +10,16 @@ func hello(i int) {
 }
 
 func main() {
+	var wg sync.WaitGroup
+	wg.Add(5)
 	for i := 0; i < 5; i++ {
 		go func(j int) {
+			defer wg.Done()
 			hello(j)
 		}(i)
 	}
-	time.Sleep(time.Second)
+	fmt.Println("Start wait......")
+	wg.Wait()
+	fmt.Println("End wait......")
+	//time.Sleep(time.Second)
 }

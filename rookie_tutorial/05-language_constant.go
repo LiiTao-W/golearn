@@ -55,6 +55,7 @@ func main() {
 	fmt.Println("l = ", l)
 
 	println("---------- switch fallthrough ----------")
+
 	switch {
 	case false:
 		fmt.Println("1、case 条件语句为 false")
